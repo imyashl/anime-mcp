@@ -2,7 +2,7 @@
 
 A fully agentic **Model Context Protocol (MCP)** server that turns Claude into
 a knowledgeable anime expert — searching, recommending, tracking watchlists,
-fetching manga chapters, and more. **28 tools**, no API keys needed.
+fetching manga chapters, and more. **30 tools**, Prompts & Resources, no API keys needed.
 
 ---
 
@@ -17,6 +17,7 @@ fetching manga chapters, and more. **28 tools**, no API keys needed.
 | 📝 **Watchlist** | Add, view, update, remove, favorites |
 | 🎯 **Recommendations** | By anime ID or preferred genres |
 | 🎌 **Fun** | Random anime, quotes, upcoming, compare |
+| 🎨 **Art** | High-res Anime & Character Wallpapers |
 
 **APIs used (all free, no keys):**
 - [Jikan v4](https://api.jikan.moe/v4) — MAL data, search, reviews
@@ -93,7 +94,18 @@ Close and reopen Claude Desktop. You should see the anime tools available.
 
 ---
 
-## 💬 Example Prompts to Try
+## � Native MCP Features
+
+Along with the 30 active tools, this server also fully utilizes MCP's native UI capabilities inside Claude:
+
+- **1 Resource** (`resource://watchlist`): Claude can passively read your raw JSON watchlist in the background organically.
+- **2 Prompts**: Use the slash menu in Claude to trigger built-in assistant behaviors!
+  - `/discover_anime` — Triggers Claude to act as your personalized Advisor and fetches Top 3 trending anime based on a genre you ask for.
+  - `/plan_my_weekend` — Triggers Claude to read your local watchlist and pick out something from your 'plan to watch' list for you to binge!
+
+---
+
+## �💬 Example Prompts to Try
 
 ### 🔍 Search & Discovery
 - `"What are the top 10 anime of all time?"`
@@ -140,7 +152,7 @@ Close and reopen Claude Desktop. You should see the anime tools available.
 
 ---
 
-## 🧰 All 28 Tools
+## 🧰 All 30 Tools
 
 ### Search & Discovery
 | Tool | Description |
@@ -198,20 +210,27 @@ Close and reopen Claude Desktop. You should see the anime tools available.
 | `get_upcoming_anime` | Anime releasing soon |
 | `compare_anime` | Side-by-side comparison |
 
+### Art & Pictures
+| Tool | Description |
+|---|---|
+| `get_anime_pictures` | Fetch high-res promo art/posters |
+| `get_character_pictures` | Fetch character art |
+
 ---
 
 ## 🏗️ Project Structure
 
 ```
 anime-mcp/
-├── server.py           # MCP server entry point (28 tools registered)
+├── server.py           # MCP server entry point (30 tools registered)
 ├── tools/
 │   ├── search.py       # Tools 1–4:  Search & Discovery
 │   ├── details.py      # Tools 5–10: Detailed Info
 │   ├── rankings.py     # Tools 11–14: Rankings & Trending
 │   ├── manga.py        # Tools 15–16: Manga Reading
+│   ├── extras.py       # Tools 17–18, 25–28: Recs & Fun
 │   ├── watchlist.py    # Tools 19–24: Personal Watchlist (JSON)
-│   └── extras.py       # Tools 17–18, 25–28: Recs & Fun
+│   └── art.py          # Tools 29-30: Images & Wallpapers
 ├── utils/
 │   ├── jikan.py        # Jikan API v4 client (rate-limited, cached)
 │   ├── anilist.py      # AniList GraphQL client (cached)
