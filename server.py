@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from mcp.server.fastmcp import FastMCP
 
 # ── Tool modules ──────────────────────────────────────────────────────────────
-from tools import search, details, rankings, manga, watchlist, extras
+from tools import search, details, rankings, manga, watchlist, extras, art
 
 # ── Server init ───────────────────────────────────────────────────────────────
 app = FastMCP("anime-mcp")
@@ -29,6 +29,7 @@ rankings.register(app)  # Tools 11–14: Rankings & Trending
 manga.register(app)     # Tools 15–16: Manga Reading
 watchlist.register(app) # Tools 19–24: Personal Watchlist
 extras.register(app)    # Tools 17–18, 25–28: Recommendations & Fun
+art.register(app)       # Tools 29-30: Anime & Character Art
 
 # ── Resources ─────────────────────────────────────────────────────────────────
 @app.resource("resource://watchlist")

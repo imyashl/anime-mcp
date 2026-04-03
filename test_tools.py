@@ -15,7 +15,7 @@ class FakeMCP:
 
 app = FakeMCP()
 
-from tools import search, details, rankings, manga, watchlist, extras
+from tools import search, details, rankings, manga, watchlist, extras, art
 
 search.register(app)
 details.register(app)
@@ -23,6 +23,7 @@ rankings.register(app)
 manga.register(app)
 watchlist.register(app)
 extras.register(app)
+art.register(app)
 
 async def test_tool(func_name, **kwargs):
     print(f"\n{'='*50}\n🔍 Testing [{func_name}] with {kwargs}")
@@ -75,6 +76,10 @@ async def run_all():
     await test_tool("get_anime_quotes")
     await test_tool("get_upcoming_anime")
     await test_tool("compare_anime", anime_id_1=20, anime_id_2=21)
+
+    # 7. Art
+    await test_tool("get_anime_pictures", anime_id=20)
+    await test_tool("get_character_pictures", character_id=17)
 
 if __name__ == "__main__":
     asyncio.run(run_all())
